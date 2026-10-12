@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Form Validation</title>
+    <link rel="stylesheet" href="t3.css">
+</head>
+<body>
+<h2>Registration</h2>
+<form id="reg">
+    <input id="name" placeholder="Name" required>
+    <input id="email" type="email" placeholder="Email" required>
+    <input id="pass" type="password" placeholder="Password" required>
+    <button>Register</button>
+</form>
+
+<h2>User Login</h2>
+<form id="login">
+    <input id="lemail" type="email" placeholder="Email" required>
+    <input id="lpass" type="password" placeholder="Password" required>
+    <button>Login</button>
+</form>
+
+<h2>User Profile</h2>
+<form id="profile">
+    <input id="age" type="number" placeholder="Age" required>
+    <input id="phone" placeholder="Phone Number" required>
+    <button>Update Profile</button>
+</form>
+
+<h2>Payment</h2>
+<form id="payment">
+    <input id="amount" type="number" placeholder="Amount" required>
+    <select id="method" required>
+        <option value="">Select Payment Method</option>
+        <option>UPI</option>
+        <option>Card</option>
+        <option>Net Banking</option>
+    </select>
+    <button>Pay</button>
+</form>
+
+<p id="msg"></p>
+<script src="script.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+

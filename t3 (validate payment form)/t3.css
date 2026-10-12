@@ -1,0 +1,34 @@
+body {
+    font-family: Arial;
+    background: #f0f8ff;
+    text-align: center;
+}
+
+form {
+    background: #ffffff;
+    padding: 15px;
+    margin: 15px auto;
+    width: 250px;
+    border-radius: 10px;
+    border: 1px solid #4a90e2;
+}
+
+input, select, button {
+    display: block;
+    width: 100%;
+    padding: 8px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 1px solid #4a90e2;
+}
+
+button {
+    background: teal;
+    color: white;
+    border: 1px solid #004d4d;
+    cursor: pointer;
+}
+
+button:hover {
+    background: darkorange;
+}

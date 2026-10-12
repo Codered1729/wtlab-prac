@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Scientific Calculator</title>
+<style>
+body {
+    text-align: center;
+    font-family: Arial;
+    background: white;
+}
+.cal {
+    width: 100%;
+    margin: auto;
+    padding: 15px;
+    background: #2c3e50;
+    color: white;
+}
+input {
+    width: 95%;
+    padding: 10px;
+    margin-bottom: 10px;
+    text-align: right;
+    font-size: 20px;
+    background: #ecf0f1;
+    color:black;
+}
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 5px;
+}
+button {
+    padding: 12px;
+    font-size: 16px;
+    cursor: pointer;
+    background: brown;
+    color: white;
+    border: 1px solid #1f618d;
+}
+button:hover {
+    background: skyblue;
+}
+</style>
+</head>
+<body>
+<h2>Scientific Calculator</h2>
+<div class="cal">
+<input id="d">
+<div class="buttons">
+
+<button onclick="f('1')">1</button>
+<button onclick="f('2')">2</button>
+<button onclick="f('3')">3</button>
+<button onclick="f('-')">-</button>
+<button onclick="f('**')">xʸ</button>
+
+<button onclick="f('4')">4</button>
+<button onclick="f('5')">5</button>
+<button onclick="f('6')">6</button>
+<button onclick="f('*')">*</button>
+<button onclick="f(')')">)</button>
+
+<button onclick="f('7')">7</button>
+<button onclick="f('8')">8</button>
+<button onclick="f('9')">9</button>
+<button onclick="f('/')">/</button>
+<button onclick="f('(')">(</button>
+
+<button onclick="f('0')">0</button>
+<button onclick="f('.')">.</button>
+<button onclick="f('+')">+</button>
+<button onclick="calc()">=</button>
+<button onclick="d.value=''">C</button>
+</div>
+</div>
+
+<script>
+function f(x) {
+    d.value += x;
+}
+function calc() {
+    try {
+        let s = d.value
+        d.value = Function('return (' + s + ')')();
+    } catch {
+        d.value = 'Error';
+    }
+}
+</script>
+</body>
+</html>

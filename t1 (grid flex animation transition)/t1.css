@@ -1,0 +1,53 @@
+.flexex{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap : 10px;
+    width: 100%;
+    animation: slideRight 2s;
+}
+.flexitem{
+    background-color: aqua;
+    flex-grow: 1;
+    width: 20px;
+    text-align: center;
+}
+.gridex{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    justify-items: center;
+    gap: 10px;
+    animation: slideLeft 2s;
+
+}
+.griditem{
+    width: 100%;
+    border: 1px solid black;
+    text-align: center;
+    background-color: orange;
+}
+
+.flexitem:hover {
+    background: yellow;
+    transform: scale(1.2);
+}
+
+.griditem:hover {
+    background: orange;
+    transform: scale(1.1);
+}
+
+@keyframes slideRight {
+    from { 
+        transform: translateX(-300px); background-color: grey;
+        
+    }
+    to { transform: translateX(0); }
+}
+
+@keyframes slideLeft {
+    from { transform: translateX(300px); background-color: grey;}
+    to { 
+        transform: translateX(0); 
+    }
+}
