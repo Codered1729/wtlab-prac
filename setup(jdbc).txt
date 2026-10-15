@@ -25,6 +25,5 @@ DELIMITER ;
 
 open eclipse 
 create new java project
-copy paste the program 
 write requires java.sql; in module-info file
 javaproject -> properties -> libraries -> classpath -> add external jar -> select the mysql jar file (will be in downloads prolly)
