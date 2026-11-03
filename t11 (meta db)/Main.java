@@ -6,17 +6,26 @@ class Main {
         Connection con = DriverManager.getConnection(
             "jdbc:mysql://localhost:3306/college", "root", "password");
 
-        DatabaseMetaData md = con.getMetaData();
+        // 1. DatabaseMetaData Methods
+        DatabaseMetaData dbmd = con.getMetaData();
+        System.out.println("=== DatabaseMetaData Methods ===");
+        System.out.println("Database Product Name: " + dbmd.getDatabaseProductName());
+        System.out.println("Database Version: " + dbmd.getDatabaseProductVersion());
+        System.out.println("Driver Name: " + dbmd.getDriverName());
+        System.out.println("Driver Version: " + dbmd.getDriverVersion());
+        System.out.println("URL: " + dbmd.getURL());
+        System.out.println("User Name: " + dbmd.getUserName());
 
-        System.out.println("Database: " + md.getDatabaseProductName());
-        System.out.println("Version: " + md.getDatabaseProductVersion());
-        System.out.println("Driver: " + md.getDriverName());
-        System.out.println("URL: " + md.getURL());
-        System.out.println("Username: " + md.getUserName());
+        // 2. ResultSetMetaData Methods
+        Statement st = con.createStatement();
+        ResultSet rs = st.executeQuery("SELECT * FROM student");
+        ResultSetMetaData rsmd = rs.getMetaData();
 
-        ResultSet rs = md.getColumns("college", null, "student", "%");
-        while (rs.next()) {
-            System.out.println(rs.getString("COLUMN_NAME") + " : " + rs.getString("TYPE_NAME"));
+        System.out.println("\n=== ResultSetMetaData Methods ===");
+        System.out.println("Total Columns: " + rsmd.getColumnCount());
+        for (int i = 1; i <= rsmd.getColumnCount(); i++) {
+            System.out.println("Column " + i + ": " + rsmd.getColumnName(i) +
+                               " (" + rsmd.getColumnTypeName(i) + ")");
         }
 
         con.close();

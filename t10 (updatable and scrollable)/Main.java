@@ -6,31 +6,46 @@ class Main {
         Connection con = DriverManager.getConnection(
             "jdbc:mysql://localhost:3306/college", "root", "password");
 
-        // Scrollable & Updatable Statement
         Statement st = con.createStatement(
             ResultSet.TYPE_SCROLL_INSENSITIVE,
             ResultSet.CONCUR_UPDATABLE);
 
         ResultSet rs = st.executeQuery("SELECT * FROM student");
 
-        // Scrollable demonstration: last & first
-        rs.last();
-        System.out.println("Last: " + rs.getString("name"));
-
+        // --- DEMONSTRATING SCROLLABLE RESULTSET METHODS ---
         rs.first();
-        System.out.println("First: " + rs.getString("name"));
+        System.out.println("first(): " + rs.getInt(1) + " " + rs.getString(2));
 
-        // Updatable demonstration: update current row
+        rs.last();
+        System.out.println("last(): " + rs.getInt(1) + " " + rs.getString(2));
+
+        rs.previous();
+        System.out.println("previous(): " + rs.getInt(1) + " " + rs.getString(2));
+
+        rs.next();
+        System.out.println("next(): " + rs.getInt(1) + " " + rs.getString(2));
+
+        rs.absolute(2);
+        System.out.println("absolute(2) [Row " + rs.getRow() + "]: " + rs.getString(2));
+
+        // --- DEMONSTRATING UPDATABLE RESULTSET METHODS ---
+        // 1. Update row: updateString() & updateRow()
+        rs.absolute(1);
         rs.updateString("name", "Ramesh");
         rs.updateRow();
-        System.out.println("Record updated");
+        System.out.println("updateRow(): Record at row 1 updated");
 
-        // Insert new row using ResultSet
+        // 2. Insert row: moveToInsertRow() & insertRow()
         rs.moveToInsertRow();
         rs.updateInt("id", 10);
         rs.updateString("name", "Ravi");
         rs.insertRow();
-        System.out.println("Record inserted");
+        System.out.println("insertRow(): New record inserted");
+
+        // 3. Delete row: deleteRow()
+        rs.last();
+        rs.deleteRow();
+        System.out.println("deleteRow(): Last record deleted");
 
         con.close();
     }

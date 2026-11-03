@@ -10,8 +10,16 @@ public class MyServlet extends HttpServlet {
         ServletConfig c = getServletConfig();
         ServletContext ctx = getServletContext();
 
-        out.println("User: " + c.getInitParameter("user"));
-        out.println("<br>College: " + ctx.getInitParameter("college"));
+        // ServletConfig methods
+        out.println("<h3>ServletConfig Methods:</h3>");
+        out.println("Servlet Name: " + c.getServletName() + "<br>");
+        out.println("Config Param (user): " + c.getInitParameter("user") + "<br>");
+
+        // ServletContext methods
+        out.println("<h3>ServletContext Methods:</h3>");
+        out.println("Context Param (college): " + ctx.getInitParameter("college") + "<br>");
+        out.println("Context Path: " + ctx.getContextPath() + "<br>");
+        out.println("Server Info: " + ctx.getServerInfo() + "<br>");
     }
 }
 
@@ -19,7 +27,6 @@ public class MyServlet extends HttpServlet {
 --- ECLIPSE & TOMCAT SETUP ---
 1. File -> New -> Dynamic Web Project -> Target Runtime: Apache Tomcat v10.x.
 2. Put servlet-api.jar into: src/main/webapp/WEB-INF/lib.
-3. Put MyServlet.java in src/main/java.
-4. Put web.xml into: src/main/webapp/WEB-INF/web.xml.
-5. Right-click MyServlet.java -> Run As -> Run on Server (or visit: http://localhost:8080/WT_Task13/hello).
+3. Put MyServlet.java in src/main/java and web.xml into src/main/webapp/WEB-INF/web.xml.
+4. Right-click MyServlet.java -> Run As -> Run on Server.
 */
