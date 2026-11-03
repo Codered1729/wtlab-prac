@@ -1,29 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Task 15 - Database Access & Update</title>
+    <title>Update Student</title>
 </head>
 <body>
-    <h2>Student Database - Update Record</h2>
+    <h2>Update Student Record</h2>
     <form action="dbServlet" method="post">
-        <table>
-            <tr>
-                <td>Student ID:</td>
-                <td><input type="number" name="id" required></td>
-            </tr>
-            <tr>
-                <td>New Name:</td>
-                <td><input type="text" name="name" required></td>
-            </tr>
-            <tr>
-                <td colspan="2">
-                    <button type="submit">Update Record</button>
-                </td>
-            </tr>
-        </table>
+        ID: <input type="number" name="id" required><br><br>
+        New Name: <input type="text" name="name" required><br><br>
+        <button type="submit">Update</button>
     </form>
     <br>
-    <a href="dbServlet">View All Student Records (Database Access)</a>
+    <a href="dbServlet">View Records (Database Access)</a>
 </body>
 </html>
-

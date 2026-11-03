@@ -5,9 +5,7 @@ import jakarta.servlet.annotation.*;
 
 @WebServlet("/hello")
 public class HelloServlet extends HttpServlet {
-    protected void doGet(HttpServletRequest req,
-                         HttpServletResponse res)
-                         throws IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException {
         res.setContentType("text/html");
         PrintWriter out = res.getWriter();
         String name = req.getParameter("name");
@@ -16,59 +14,9 @@ public class HelloServlet extends HttpServlet {
 }
 
 /*
- ============================================================================
-  ECLIPSE IDE SETUP & EXECUTION INSTRUCTIONS (SERVLET - HTTPSERVLET)
- ============================================================================
- 
- 1. REQUIRED SOFTWARE:
-    - Eclipse IDE for Enterprise Java and Web Developers.
-    - Apache Tomcat Server (Tomcat 10.x for jakarta.servlet, or Tomcat 9.x for javax.servlet).
- 
- 2. CREATE A DYNAMIC WEB PROJECT IN ECLIPSE:
-    a. Open Eclipse IDE.
-    b. Go to: File -> New -> Dynamic Web Project
-       (If not visible: File -> New -> Other... -> Web -> Dynamic Web Project).
-    c. Project Name: "WT_Task12" (or any name you prefer).
-    d. Target Runtime:
-       - Select "Apache Tomcat v10.1" (or v10.0 / v9.0).
-       - If not already added:
-         1. Click "New Runtime..."
-         2. Select "Apache Tomcat v10.1" -> Click "Next".
-         3. Browse to your installed Apache Tomcat directory.
-         4. Click "Finish".
-    e. Dynamic web module version: Select 5.0 or 6.0 (for Tomcat 10) or 4.0 (for Tomcat 9).
-    f. Click "Next" -> "Next".
-    g. Check the box: [x] "Generate web.xml deployment descriptor".
-    h. Click "Finish".
- 
- 3. ADDING THE SERVLET JAR FILE (IF COMPILATION ERRORS OCCUR):
-    * If you see red error underlines on `jakarta.servlet.*` or `HttpServlet`:
-    a. What JAR file is required?
-       - "servlet-api.jar" (or "jakarta.servlet-api.jar").
-       - Found inside: <Tomcat-Directory>\lib\servlet-api.jar
-    b. Where to add it in Eclipse:
-       - Method 1 (Recommended):
-         Copy "servlet-api.jar" from your Tomcat "lib" folder and paste it into:
-         YourProject -> src -> main -> webapp -> WEB-INF -> lib
-         (In older Eclipse versions: WebContent -> WEB-INF -> lib).
-       - Method 2 (Build Path):
-         Right-click Project -> Build Path -> Configure Build Path...
-         Go to "Libraries" tab -> Select "Classpath" -> Click "Add External JARs..."
-         Select: <Tomcat-Directory>\lib\servlet-api.jar -> Click "Apply and Close".
- 
- 4. WHERE TO PLACE THE FILES:
-    - HelloServlet.java:
-      Place inside: Java Resources -> src/main/java (default package).
-    - index.html:
-      Place inside: src -> main -> webapp (or WebContent).
-    - web.xml (optional if using @WebServlet):
-      Place inside: src -> main -> webapp -> WEB-INF -> web.xml.
- 
- 5. RUN THE PROGRAM:
-    a. Right-click "index.html" in Package Explorer.
-    b. Select: Run As -> Run on Server.
-    c. Select your Tomcat Server -> Click "Finish".
-    d. In the browser form, enter your name and click "Submit".
-    e. The servlet responds with: "Welcome <Name>".
- ============================================================================
+--- ECLIPSE & TOMCAT SETUP ---
+1. File -> New -> Dynamic Web Project -> Name: "WT_Task12" -> Target Runtime: Apache Tomcat v10.x.
+2. Put servlet-api.jar into: src/main/webapp/WEB-INF/lib (from Tomcat's lib folder).
+3. Put HelloServlet.java in src/main/java and index.html in src/main/webapp.
+4. Right-click index.html -> Run As -> Run on Server.
 */
