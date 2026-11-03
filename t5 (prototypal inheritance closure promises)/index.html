@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 5 - Advanced JavaScript Concepts</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f9;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 850px;
+            margin: auto;
+            background: #fff;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+        .btn-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 20px 0;
+        }
+        button {
+            padding: 10px 18px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.2s;
+        }
+        button:hover {
+            background-color: #2980b9;
+        }
+        button.run-all {
+            background-color: #27ae60;
+        }
+        button.run-all:hover {
+            background-color: #219150;
+        }
+        button.clear-btn {
+            background-color: #e74c3c;
+        }
+        button.clear-btn:hover {
+            background-color: #c0392b;
+        }
+        #output {
+            background-color: #1e1e1e;
+            color: #d4d4d4;
+            padding: 16px;
+            border-radius: 6px;
+            min-height: 250px;
+            white-space: pre-wrap;
+            font-family: 'Consolas', 'Courier New', monospace;
+            font-size: 14px;
+            line-height: 1.5;
+            overflow-x: auto;
+        }
+        .highlight {
+            color: #61afef;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>JavaScript Concepts Demo</h1>
+    <p>Experiment 5: Prototypal Inheritance, Closure, Callbacks, Promises, and Async / Await.</p>
+
+    <div class="btn-group">
+        <button onclick="demoInheritance()">1. Prototypal Inheritance</button>
+        <button onclick="demoClosure()">2. Closure</button>
+        <button onclick="demoCallback()">3. Callback</button>
+        <button onclick="demoPromise()">4. Promise</button>
+        <button onclick="demoAsyncAwait()">5. Async / Await</button>
+        <button class="run-all" onclick="runAll()">Run All</button>
+        <button class="clear-btn" onclick="clearOutput()">Clear</button>
+    </div>
+
+    <div id="output">Click any button above or run 'node script.js' in terminal to view output...</div>
+</div>
+
+<script>
+    const out = document.getElementById("output");
+
+    function log(msg) {
+        if (out.innerText.startsWith("Click any button")) {
+            out.innerText = "";
+        }
+        out.innerText += msg + "\n";
+        console.log(msg);
+    }
+
+    function clearOutput() {
+        out.innerText = "";
+    }
+
+    // 1. Prototypal Inheritance
+    function Person(name, age) {
+        this.name = name;
+        this.age = age;
+    }
+    Person.prototype.greet = function() {
+        return `Hello, my name is ${this.name} and I am ${this.age} years old.`;
+    };
+    function Student(name, age, rollNo, course) {
+        Person.call(this, name, age);
+        this.rollNo = rollNo;
+        this.course = course;
+    }
+    Student.prototype = Object.create(Person.prototype);
+    Student.prototype.constructor = Student;
+    Student.prototype.getDetails = function() {
+        return `${this.name} (Roll No: ${this.rollNo}) is studying ${this.course}.`;
+    };
+
+    function demoInheritance() {
+        log("=== 1. PROTOTYPAL INHERITANCE ===");
+        const s = new Student("Rahul", 20, "101", "Computer Science");
+        log(s.greet());
+        log(s.getDetails());
+    }
+
+    // 2. Closure
+    function createCounter(initialValue = 0) {
+        let count = initialValue;
+        return {
+            increment: () => `Count: ${++count}`,
+            decrement: () => `Count: ${--count}`,
+            getCount: () => `Current Count: ${count}`
+        };
+    }
+
+    function demoClosure() {
+        log("=== 2. CLOSURE ===");
+        const counter = createCounter(10);
+        log(counter.increment());
+        log(counter.increment());
+        log(counter.decrement());
+        log(counter.getCount());
+    }
+
+    // 3. Callback
+    function fetchUserData(userId, callback) {
+        log(`[Callback] Fetching data for user ID: ${userId}...`);
+        setTimeout(() => {
+            const user = { id: userId, name: "Priya", role: "Developer" };
+            callback(null, user);
+        }, 400);
+    }
+
+    function demoCallback() {
+        log("=== 3. CALLBACK ===");
+        fetchUserData(101, (err, user) => {
+            if (err) return log("[Callback] Error: " + err);
+            log(`[Callback] User fetched: ${user.name}, Role: ${user.role}`);
+        });
+    }
+
+    // 4. Promise
+    function fetchMarks(rollNo) {
+        return new Promise((resolve, reject) => {
+            log(`[Promise] Fetching marks for roll number: ${rollNo}...`);
+            setTimeout(() => {
+                if (rollNo) resolve({ "Web Technologies": 95, "Database Systems": 90 });
+                else reject("Invalid Roll Number");
+            }, 400);
+        });
+    }
+
+    function demoPromise() {
+        log("=== 4. PROMISE ===");
+        fetchMarks("101")
+            .then(marks => log("[Promise] Marks: " + JSON.stringify(marks)))
+            .catch(err => log("[Promise] Error: " + err))
+            .finally(() => log("[Promise] Completed."));
+    }
+
+    // 5. Async / Await
+    function getStudentReport(id) {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                if (id > 0) resolve({ id, grade: "A+", status: "Passed" });
+                else reject("Student not found");
+            }, 400);
+        });
+    }
+
+    async function demoAsyncAwait() {
+        log("=== 5. ASYNC / AWAIT ===");
+        try {
+            log("[Async/Await] Requesting report for student ID: 101...");
+            const rep = await getStudentReport(101);
+            log(`[Async/Await] Report received: Grade = ${rep.grade}, Status = ${rep.status}`);
+        } catch (err) {
+            log("[Async/Await] Error: " + err);
+        } finally {
+            log("[Async/Await] Execution finished.");
+        }
+    }
+
+    async function runAll() {
+        clearOutput();
+        demoInheritance();
+        demoClosure();
+        demoCallback();
+        demoPromise();
+        await new Promise(r => setTimeout(r, 600));
+        await demoAsyncAwait();
+    }
+</script>
+</body>
+</html>
+

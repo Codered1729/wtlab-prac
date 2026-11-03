@@ -1,0 +1,22 @@
+<web-app>
+    <!-- GenericServlet mapping -->
+    <servlet>
+        <servlet-name>GenericHelloServlet</servlet-name>
+        <servlet-class>GenericHelloServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>GenericHelloServlet</servlet-name>
+        <url-pattern>/genericHello</url-pattern>
+    </servlet-mapping>
+
+    <!-- HttpServlet mapping -->
+    <servlet>
+        <servlet-name>HelloServlet</servlet-name>
+        <servlet-class>HelloServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>HelloServlet</servlet-name>
+        <url-pattern>/hello</url-pattern>
+    </servlet-mapping>
+</web-app>
+
