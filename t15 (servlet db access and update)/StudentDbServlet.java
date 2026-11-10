@@ -7,7 +7,6 @@ import jakarta.servlet.annotation.*;
 @WebServlet("/dbServlet")
 public class StudentDbServlet extends HttpServlet {
 
-    // Database Access: Fetch and display all records
     protected void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException {
         res.setContentType("text/html");
         PrintWriter out = res.getWriter();
@@ -28,7 +27,6 @@ public class StudentDbServlet extends HttpServlet {
         }
     }
 
-    // Database Update: Update student name by ID
     protected void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException {
         res.setContentType("text/html");
         PrintWriter out = res.getWriter();
@@ -55,18 +53,3 @@ public class StudentDbServlet extends HttpServlet {
         }
     }
 }
-
-/*
---- ECLIPSE, TOMCAT & DB SETUP ---
-1. MySQL:
-   CREATE DATABASE college; USE college;
-   CREATE TABLE student (id INT PRIMARY KEY, name VARCHAR(50));
-   INSERT INTO student VALUES (1, 'Rahul'), (2, 'Priya'), (3, 'Amit');
-
-2. Eclipse Dynamic Web Project:
-   - Target Runtime: Apache Tomcat v10.x.
-   - Put BOTH 'servlet-api.jar' AND 'mysql-connector-j-8.x.jar' into:
-     src/main/webapp/WEB-INF/lib
-   - Put StudentDbServlet.java in src/main/java and index.html in src/main/webapp.
-   - Right-click index.html -> Run As -> Run on Server.
-*/

@@ -67,10 +67,6 @@
             line-height: 1.5;
             overflow-x: auto;
         }
-        .highlight {
-            color: #61afef;
-            font-weight: bold;
-        }
     </style>
 </head>
 <body>
@@ -106,7 +102,6 @@
         out.innerText = "";
     }
 
-    // 1. Prototypal Inheritance
     function Person(name, age) {
         this.name = name;
         this.age = age;
@@ -132,7 +127,6 @@
         log(s.getDetails());
     }
 
-    // 2. Closure
     function createCounter(initialValue = 0) {
         let count = initialValue;
         return {
@@ -151,7 +145,6 @@
         log(counter.getCount());
     }
 
-    // 3. Callback
     function fetchUserData(userId, callback) {
         log(`[Callback] Fetching data for user ID: ${userId}...`);
         setTimeout(() => {
@@ -168,7 +161,6 @@
         });
     }
 
-    // 4. Promise
     function fetchMarks(rollNo) {
         return new Promise((resolve, reject) => {
             log(`[Promise] Fetching marks for roll number: ${rollNo}...`);
@@ -187,7 +179,6 @@
             .finally(() => log("[Promise] Completed."));
     }
 
-    // 5. Async / Await
     function getStudentReport(id) {
         return new Promise((resolve, reject) => {
             setTimeout(() => {
@@ -222,4 +213,3 @@
 </script>
 </body>
 </html>
-

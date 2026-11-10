@@ -12,7 +12,6 @@ public class LoginServlet extends HttpServlet {
         String u = req.getParameter("username");
         String p = req.getParameter("password");
 
-        // b. Read cookies and authenticate
         boolean valid = false;
         Cookie[] cookies = req.getCookies();
         if (cookies != null) {
@@ -35,12 +34,3 @@ public class LoginServlet extends HttpServlet {
         res.sendRedirect("setCookie");
     }
 }
-
-/*
---- ECLIPSE & TOMCAT SETUP ---
-1. File -> New -> Dynamic Web Project -> Target Runtime: Apache Tomcat v10.x.
-2. Put servlet-api.jar into: src/main/webapp/WEB-INF/lib.
-3. Put LoginServlet.java & SetCookieServlet.java in src/main/java.
-4. Put login.html in src/main/webapp.
-5. First run SetCookieServlet to initialize cookies -> Click 'Go to Login' -> Test login.
-*/

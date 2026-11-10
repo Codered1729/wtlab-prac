@@ -12,7 +12,6 @@ class Main {
 
         ResultSet rs = st.executeQuery("SELECT * FROM student");
 
-        // --- DEMONSTRATING SCROLLABLE RESULTSET METHODS ---
         rs.first();
         System.out.println("first(): " + rs.getInt(1) + " " + rs.getString(2));
 
@@ -28,21 +27,17 @@ class Main {
         rs.absolute(2);
         System.out.println("absolute(2) [Row " + rs.getRow() + "]: " + rs.getString(2));
 
-        // --- DEMONSTRATING UPDATABLE RESULTSET METHODS ---
-        // 1. Update row: updateString() & updateRow()
         rs.absolute(1);
         rs.updateString("name", "Ramesh");
         rs.updateRow();
         System.out.println("updateRow(): Record at row 1 updated");
 
-        // 2. Insert row: moveToInsertRow() & insertRow()
         rs.moveToInsertRow();
         rs.updateInt("id", 10);
         rs.updateString("name", "Ravi");
         rs.insertRow();
         System.out.println("insertRow(): New record inserted");
 
-        // 3. Delete row: deleteRow()
         rs.last();
         rs.deleteRow();
         System.out.println("deleteRow(): Last record deleted");
@@ -50,15 +45,3 @@ class Main {
         con.close();
     }
 }
-
-/*
---- ECLIPSE & DB SETUP ---
-1. MySQL:
-   CREATE DATABASE college; USE college;
-   CREATE TABLE student (id INT PRIMARY KEY, name VARCHAR(50));
-   INSERT INTO student VALUES (1, 'Rahul'), (2, 'Priya'), (3, 'Amit');
-
-2. Eclipse:
-   - File -> New -> Java Project -> Add mysql-connector-j.jar to Classpath.
-   - Run As -> Java Application.
-*/

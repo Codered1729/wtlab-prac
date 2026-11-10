@@ -6,7 +6,6 @@ class Main {
         Connection con = DriverManager.getConnection(
             "jdbc:mysql://localhost:3306/college", "root", "password");
 
-        // 1. DatabaseMetaData Methods
         DatabaseMetaData dbmd = con.getMetaData();
         System.out.println("=== DatabaseMetaData Methods ===");
         System.out.println("Database Product Name: " + dbmd.getDatabaseProductName());
@@ -16,7 +15,6 @@ class Main {
         System.out.println("URL: " + dbmd.getURL());
         System.out.println("User Name: " + dbmd.getUserName());
 
-        // 2. ResultSetMetaData Methods
         Statement st = con.createStatement();
         ResultSet rs = st.executeQuery("SELECT * FROM student");
         ResultSetMetaData rsmd = rs.getMetaData();
@@ -31,15 +29,3 @@ class Main {
         con.close();
     }
 }
-
-/*
---- ECLIPSE & DB SETUP ---
-1. MySQL:
-   CREATE DATABASE college; USE college;
-   CREATE TABLE student (id INT PRIMARY KEY, name VARCHAR(50));
-   INSERT INTO student VALUES (1, 'Rahul'), (2, 'Priya'), (3, 'Amit');
-
-2. Eclipse:
-   - File -> New -> Java Project -> Add mysql-connector-j.jar to Classpath.
-   - Run As -> Java Application.
-*/
